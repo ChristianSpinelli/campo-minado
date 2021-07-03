@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\Mapa.h(53,14): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\main.cpp(9,33): error C2228: esquerda de '.size' deve possuir class/struct/union
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\main.cpp(9,33): message : tipo é 'Celula **'

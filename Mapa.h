@@ -9,6 +9,7 @@
 
 	linhas - número de linhas do mapa
 	colunas - número de colunas do mapa
+	qtdBombas - é o número de bombas que terá no mapa
 	matrizCelulas - É o mapa em si, ele é formado por uma matriz de Células
 */
 class Mapa {
@@ -19,7 +20,7 @@ class Mapa {
 		Celula** matrizCelulas;
 		
 	public:
-		
+		/* Construtor da Classe Mapa*/
 		Mapa(int l, int c, int b) {
 			
 			linhas = l;
@@ -32,7 +33,8 @@ class Mapa {
 				matrizCelulas[i] = new Celula[colunas];
 			}
 		}
-
+		
+		/* Destrutor da Classe Mapa*/
 		~Mapa() {
 			/* deleta a memória alocada */
 			for (int i = 0; i < linhas; i++) {
@@ -40,11 +42,8 @@ class Mapa {
 			}
 			delete[] matrizCelulas;
 		}
-
-		Celula** getMatrizCelulas() {
-			return matrizCelulas;
-		}
-
+		
+		/*gera a Matriz*/
 		void gerarMatriz() {
 			int posicoes = linhas * colunas;
 			std::vector<int> posicoesBombas(qtdBombas);
@@ -62,20 +61,21 @@ class Mapa {
 					posicoesBombas[i] = resultado;
 				}
 			}
-			
-			
-			for (int b = 0; b < posicoesBombas.size(); b++) {
-				std::cout << posicoesBombas[b] << std::endl;
-			}
 
-			/*preenche a matriz com as bombas e soma 1 aos adjacentes*/
+			/*preenche a matriz com as bombas e atualiza os adjacentes com a quantidade correspondente
+			de bombas que está próxima deles*/
 			int contador = 0;
+			/*percorre a matriz*/
 			for (int i = 0; i < linhas; i++) {
 				for (int j = 0; j < colunas; j++ ) {
+					/*percorre a lista de posicoes das bombas*/
 					for (int b = 0; b < posicoesBombas.size(); b++) {
+						/* se a posição da celula atual for a posição que corresponde há uma bomba*/
 						if (contador == posicoesBombas[b]) {
+							/* adiciona a celula selecionada o valor que corresponde as bombas*/
 							matrizCelulas[i][j].setValor(-1);
-							/*Adjacentes das celulas*/
+							
+							/*Soma um aos campos que são adjacentes a bomba selecionada*/
 							if (i > 0 && j < colunas -1) {
 								matrizCelulas[i - 1][j + 1].addValor(1);
 							}
@@ -109,6 +109,13 @@ class Mapa {
 		
 		}
 
+		/*Retorna a matriz gerada*/
+		Celula** getMatrizCelulas() {
+			return matrizCelulas;
+		}
+
+		/*imprimi a matriz no console
+			*método utilizado para debug*/
 		void imprimirMatriz() {
 			for (int i = 0; i < linhas; i++) {
 				for (int j = 0; j < colunas; j++) {
@@ -118,18 +125,22 @@ class Mapa {
 			}
 		}
 
+		/* Define a quantidade de linhas da matriz*/
 		void setLinhas(int l) {
 			linhas = l;
 		}
 
+		/* Retorna a quantidade de linhas da matriz*/
 		int getLinhas() {
 			return linhas;
 		}
 
+		/*Define a quantidade de colunas da matriz*/
 		void setColunas(int c) {
 			colunas = c;
 		}
-
+		
+		/*Retorna a quantidade de colunas da matriz*/
 		int getColunas() {
 			return colunas;
 		}

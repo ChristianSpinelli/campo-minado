@@ -14,7 +14,7 @@ int main()
     int camposVazios = qtdCelulas - qtdBombas;
     bool derrota = false;
     bool vitoria = false;
-    //::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
     
     /*Carrega as imagens*/
     sf::Image imgCelula, imgCelulaRevelada, imgBandeira, imgBomba;

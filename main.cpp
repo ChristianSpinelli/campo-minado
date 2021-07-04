@@ -6,8 +6,8 @@
 int main()
 {
     /*Configurações do jogo*/
-    int linhas = 40;
-    int colunas = 40;
+    int linhas = 30;
+    int colunas = 30;
     int qtdBombas = 99;
     int qtdCelulas = linhas * colunas;
     int celula_tamanho= 13;
@@ -157,11 +157,14 @@ int main()
                                         textPosition++;
                                     }
 
+
                                     camposVazios--;
                                     if (camposVazios == 0) {
                                         vitoria = true;
                                     }
                                 }
+                                
+
                                 else {
                                     sprite.setTexture(texBomba);
                                     qtdBombas--;

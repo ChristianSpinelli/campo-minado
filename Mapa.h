@@ -10,7 +10,7 @@
 	linhas - número de linhas do mapa
 	colunas - número de colunas do mapa
 	qtdBombas - é o número de bombas que terá no mapa
-	matrizCelulas - É o mapa em si, ele é formado por uma matriz de Células
+	matrizCelulas - É o mapa em si, ele é formado por uma matriz de Célula
 */
 class Mapa {
 	private:
@@ -32,6 +32,15 @@ class Mapa {
 			for (int i = 0; i < linhas; i++) {
 				matrizCelulas[i] = new Celula[colunas];
 			}
+
+			//Guarda na celula a sua posição no mapa
+			for (int x = 0; x < linhas; x++) {
+				for (int y = 0; y < colunas; y++) {
+					matrizCelulas[x][y].setLinha(x);
+					matrizCelulas[x][y].setColuna(y);
+				}
+			}
+
 		}
 		
 		/* Destrutor da Classe Mapa*/
@@ -76,29 +85,13 @@ class Mapa {
 							matrizCelulas[i][j].setValor(-1);
 							
 							/*Soma um aos campos que são adjacentes a bomba selecionada*/
-							if (i > 0 && j < colunas -1) {
-								matrizCelulas[i - 1][j + 1].addValor(1);
-							}
-							if (i > 0) {
-								matrizCelulas[i - 1][j].addValor(1);
-							}
-							if (i > 0 && j > 0) {
-								matrizCelulas[i - 1][j - 1].addValor(1);
-							}
-							if (j > 0) {
-								matrizCelulas[i][j - 1].addValor(1);
-							}
-							if(i < linhas -1 && j > 0){
-								matrizCelulas[i + 1][j - 1].addValor(1);
-							}
-							if (i < linhas - 1) {
-								matrizCelulas[i + 1][j].addValor(1);
-							}
-							if (i < linhas - 1 && j < colunas - 1) {
-								matrizCelulas[i + 1][j + 1].addValor(1);
-							}
-							if (j < colunas - 1) {
-								matrizCelulas[i][j + 1].addValor(1);
+							std::vector<Celula> adjacentes = getAdjacentes(i,j);
+							for (int a = 0; a < adjacentes.size(); a++) {
+								Celula celulaAdjacente = adjacentes[a];
+								celulaAdjacente.addValor(1);
+								matrizCelulas[celulaAdjacente.getLinha()][celulaAdjacente.getColuna()] = celulaAdjacente;
+								//lista de adjacentes
+								//std::cout << "X: " + std::to_string(celulaAdjacente.getLinha()) + " Y: " + std::to_string(celulaAdjacente.getColuna()) << std::endl;
 							}
 						
 						}
@@ -106,7 +99,8 @@ class Mapa {
 					contador++;
 				}
 			}
-		
+			
+			
 		}
 
 		/*Retorna a matriz gerada*/
@@ -145,6 +139,53 @@ class Mapa {
 			return colunas;
 		}
 
+		/*Retorna todas as células adjacentes a uma célula específica.*/
+		std::vector<Celula> getAdjacentes(int i, int j) {
+			std::vector<Celula> adjacentes(8);
+			int position = 0;
+
+			if (i > 0 && j < colunas - 1) {
+				adjacentes[position] = matrizCelulas[i - 1][j + 1];
+				position++;
+			}
+			if (i > 0) {
+				adjacentes[position] = matrizCelulas[i - 1][j];
+				position++;
+			}
+			if (i > 0 && j > 0) {
+				adjacentes[position] = matrizCelulas[i - 1][j - 1];
+				position++;
+			}
+			if (j > 0) {
+				adjacentes[position] = matrizCelulas[i][j - 1];
+				position++;		
+			}
+			if (i < linhas - 1 && j > 0) {
+				adjacentes[position] = matrizCelulas[i + 1][j - 1];
+				position++;
+				
+			}
+			if (i < linhas - 1) {
+				adjacentes[position] = matrizCelulas[i + 1][j];
+				position++;
+			}
+			if (i < linhas - 1 && j < colunas - 1) {
+				adjacentes[position] = matrizCelulas[i + 1][j + 1];
+				position++;
+			}
+			if (j < colunas - 1) {
+				adjacentes[position] = matrizCelulas[i][j + 1];
+				position++;
+			}
+		
+			/*caso a célula não tenha 8 adjacentes remove aqueles que não foram incializados*/
+			int restantes = 8 - position;
+			for (int r = 0; r < restantes; r++) {
+				adjacentes.pop_back();
+			}
+
+			return adjacentes;
+		}
 		
 
 		

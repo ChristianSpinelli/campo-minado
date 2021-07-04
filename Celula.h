@@ -13,6 +13,8 @@
 class Celula {
 private:
 	int valor = 0;
+	int linha = 0;
+	int coluna = 0;
 	bool estado = false;
 	bool bandeira = false;
 public:
@@ -23,7 +25,7 @@ public:
 		bandeira = false;
 	}
 	
-	/*Construtor 2 da classe celula*/
+	/*Construtor da classe celula passando o valor*/
 	Celula(int v) {
 		valor = v;
 		estado = false;
@@ -66,5 +68,21 @@ public:
 	/* Retorna se a célula está com a bandeira*/
 	bool getBandeira() {
 		return bandeira;
+	}
+
+	void setLinha(int l) {
+		linha = l;
+	}
+
+	int getLinha() {
+		return linha;
+	}
+
+	void setColuna(int c) {
+		coluna = c;
+	}
+
+	int getColuna() {
+		return coluna;
 	}
 };

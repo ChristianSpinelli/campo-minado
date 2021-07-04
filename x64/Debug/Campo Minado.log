@@ -1,3 +1,8 @@
 ﻿  main.cpp
-C:\Users\cspin\source\repos\Campo Minado\Campo Minado\Mapa.h(52,14): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\Mapa.h(61,14): warning C4244: 'argumento': conversão de 'time_t' para 'unsigned int', possível perda de dados
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\main.cpp(94,89): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\main.cpp(94,53): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\main.cpp(102,94): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\main.cpp(102,54): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+C:\Users\cspin\source\repos\Campo Minado\Campo Minado\main.cpp(112,59): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
   Campo Minado.vcxproj -> C:\Users\cspin\source\repos\Campo Minado\x64\Debug\Campo Minado.exe
